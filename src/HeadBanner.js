@@ -5,7 +5,7 @@ const HeadBanner = () => {
         <div className="headBanner">
           <div className="logoContainer">
           <div className = "logoWriting">
-            test
+            HistoricalSavingsCalculator.com
           </div>
           </div>
         </div>

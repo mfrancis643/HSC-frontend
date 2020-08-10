@@ -1,9 +1,10 @@
 import React, {useState} from "react";
-import {Button} from "@material-ui/core";
+import {Button, Switch} from "@material-ui/core";
 
 
 const Main = () => {
     const [isLoading, setIsLoading] = useState(false);
+    const [isUserData, setIsUserData] = useState(false);
 
     return (
         <div className="spacerMargin">
@@ -12,8 +13,9 @@ const Main = () => {
                     <h3>Mark Francis</h3>
                     <p>Hello, this is my attempt</p>
                 </div>
-                {isLoading ? "loading" : "notLoading"}
-                <Button onClick={() => setIsLoading(true)}>LOAD</Button>
+                <Switch checked={isUserData} onChange={() => setIsUserData(!isUserData)} name="antoine" />
+                {isLoading ? "Loading...": null}
+                <Button className="getResult" onClick={() => setIsLoading(!isLoading)}>LOAD</Button>
             </div>
         </div>
     );

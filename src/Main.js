@@ -10,17 +10,34 @@ import {
     TextField
 } from "@material-ui/core";
 import {getYearInterestRatePair} from "./resources/yearInterestPair";
+import {properties} from "./resources/properties/properties.js";
+import axios from "axios";
 
 const Main = () => {
     const yearInterestPair = getYearInterestRatePair;
     const [isLoading, setIsLoading] = useState(false);
     const [isUserData, setIsUserData] = useState(true);
+    const [bankBalance, setBankBalance] = useState(1000);
     const [country, setCountry] = useState("UK");
     const [startYear, setStartYear] = useState(Object.keys(yearInterestPair)[0]);
     const [endYear, setEndYear] = useState(Object.keys(yearInterestPair).pop());
 
-    const handleChange = (event) => {
-        setCountry(event.target.value)
+    const sendButtonClick = () =>{
+        let payload = {
+            "bankBalance": bankBalance,
+            "yearInterestPair": getDataFromRange()
+        };
+        axios.post(properties.host,payload)
+            .then(res => {
+            });
+    };
+
+    const getDataFromRange = () => {
+        let relevantData = {};
+        for(let year = startYear; year <= endYear; year++) {
+            relevantData[year] = yearInterestPair[year]
+        }
+        return relevantData;
     };
 
     return (
@@ -31,8 +48,14 @@ const Main = () => {
                     <p>Hello, this is my attempt</p>
                 </div>
 
-                <div>
-                    <TextField id="standard-basic" label="Bank Balance" size="large" />
+                <div className="row">
+                    <span className="label">
+                        <TextField id="standard-basic"
+                                   label="Bank Balance"
+                                   value={bankBalance}
+                                   onChange={(e) => setBankBalance(e.target.value)}
+                        />
+                    </span>
                 </div>
 
                 <div className="row">
@@ -60,11 +83,9 @@ const Main = () => {
                                         id="demo-simple-select-autowidth"
                                         value={country}
                                         autoWidth
-                                        onChange={handleChange}
+                                        onChange={(e) => setCountry(e.target.value)}
                                     >
                                         <MenuItem value={"UK"}>UK</MenuItem>
-                                        <MenuItem value={"USA"}>USA</MenuItem>
-                                        <MenuItem value={"NZ"}>NZ</MenuItem>
                                     </Select>
                                 </span>
                             </div>
@@ -80,8 +101,7 @@ const Main = () => {
                                         onChange={(e) => {setStartYear(e.target.value)}}
                                     >
                                         {Object.keys(yearInterestPair).map( (year) => {
-                                            console.log(year);
-                                            return <MenuItem value={year}>{year}</MenuItem>
+                                            return <MenuItem key={year} value={year}>{year}</MenuItem>
                                         })}
                                     </Select>
                                 </span>
@@ -98,8 +118,7 @@ const Main = () => {
                                         onChange={(e) => {setEndYear(e.target.value)}}
                                     >
                                         {Object.keys(yearInterestPair).map( (year) => {
-                                            console.log(year);
-                                            return <MenuItem value={year}>{year}</MenuItem>
+                                            return <MenuItem key={year} value={year}>{year}</MenuItem>
                                         })}
                                     </Select>
                                 </span>
@@ -112,20 +131,18 @@ const Main = () => {
                     disabled={isUserData}
                 >
                     <AccordionSummary
-                        // expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel3a-content"
                         id="panel3a-header"
                     >
                         Custom Data
                     </AccordionSummary>
                     <AccordionDetails>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                        sit amet blandit leo lobortis eget.
+                        <h1>Coming Soon!</h1>
                     </AccordionDetails>
                 </Accordion>
 
                 {isLoading ? "Loading...": null}
-                <Button className="getResult" onClick={() => setIsLoading(!isLoading)}>LOAD</Button>
+                <Button className="getResult" onClick={() => sendButtonClick()}>LOAD</Button>
             </div>
         </div>
     );

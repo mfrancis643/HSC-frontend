@@ -9,7 +9,8 @@ html, body{
 }
 html{
   height: 100%;
-  background-color: #F4FBFC;
+  background-color: #ffffff;
+  width: 100%;
 }
 
 
@@ -66,13 +67,10 @@ td{
 
 }
 
-#root{
-  height: calc(100% - 70px);
-}
 
 .content{
-  height: auto;
-  flex-grow: 1;
+  margin: auto;
+  max-width: 1000px;
 }
 
 
@@ -112,4 +110,27 @@ td{
 .dropDown{
   min-width: 200px;
   height: 50px;
+}
+
+.scrollable{
+  overflow-y: scroll;
+}
+
+.modalDiv{
+  padding: 20px;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top:0;
+  left:0;
+}
+
+.fullWidth{
+  width: 100%;
+  float: left;
+  display: inline;
+}
+
+.wrapper{
+  display: inline;
 }

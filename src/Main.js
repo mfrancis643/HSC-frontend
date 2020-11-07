@@ -32,8 +32,8 @@ const Main = () => {
         };
         axios.post(properties.host,payload)
             .then(res => {
-                console.log("results")
-                console.log(results)
+                console.log("results");
+                console.log(results);
                 setResults(res.data);
                 setResultsOpen(true);
             });

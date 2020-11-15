@@ -67,6 +67,11 @@ td{
 
 }
 
+.iteration{
+  margin: 15px;
+  border: solid black 2px;
+  padding: 10px
+}
 
 .content{
   margin: auto;

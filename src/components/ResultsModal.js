@@ -6,20 +6,12 @@ import Iteration from "./Iteration";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogActions from "@material-ui/core/DialogActions";
 
-const useStyles = makeStyles({
-
-})
-
 const ResultsModal = ({open, closeCall, content}) => {
-    console.log(content.initialBankBalance)
-    console.log(open)
     let bankBankBalance = content.initialBankBalance;
+    let finalBankBalance = content.finalBankBalance;
     let iterations = content.iterations;
-    console.log("iterations")
-    console.log(iterations)
     return(
 
         <Dialog
@@ -36,18 +28,18 @@ const ResultsModal = ({open, closeCall, content}) => {
                         <CloseIcon/>
                     </IconButton>
                 </DialogActions>
-                Your Results
+                Your Result: {finalBankBalance}
             </DialogTitle>
             <DialogContent>
-                    {bankBankBalance}
+                    Starting Bank Balance: {bankBankBalance}
 
                     {
                         iterations.map((iteration, index) => {
-                            console.log(iteration)
-                            console.log("iteration")
                             return(
                                 <Iteration
                                     key ={index}
+                                    year = {iteration.year}
+                                    initialBalance={iteration.initialBalance}
                                     interestRate={iteration.interestRate}
                                     annualInterest={iteration.annualInterest}
                                     newBankBalance={iteration.newBankBalance}
@@ -58,5 +50,5 @@ const ResultsModal = ({open, closeCall, content}) => {
             </DialogContent>
         </Dialog>
     );
-}
+};
 export default  ResultsModal;

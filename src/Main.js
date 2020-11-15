@@ -1,39 +1,35 @@
-import React, {useDebugValue, useState} from "react";
+import React, {useState} from "react";
 import {
     Accordion,
     AccordionDetails,
     AccordionSummary,
     Button,
-    MenuItem,
-    Select,
     Switch,
     TextField,
-    Grid
 } from "@material-ui/core";
 import {getYearInterestRatePair} from "./resources/yearInterestPair";
 import {properties} from "./resources/properties/properties.js";
 import axios from "axios";
 import ResultsModal from "./components/ResultsModal"
 import HeadBanner from "./components/HeadBanner";
-import HistoricalDataAccordian from "./components/HistoricalDataAccordian";
+import HistoricalDataAccordion from "./components/HistoricalDataAccordion";
 
 const Main = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isUserData, setIsUserData] = useState(true);
     const [bankBalance, setBankBalance] = useState(1000);
     const [resultsOpen, setResultsOpen] = useState(false);
-    const [results, setResults] = useState({})
-    const [yearInterestPair, setYearInterestPair] = useState(getYearInterestRatePair)
+    const [results, setResults] = useState({});
+    const [yearInterestPairData, setYearInterestPairData] = useState(getYearInterestRatePair);
+    const [yearInterestPairPayload, setYearInterestPairPayload] = useState(yearInterestPairData);
 
     const sendButtonClick = () =>{
         let payload = {
             "bankBalance": bankBalance,
-            "yearInterestPair": yearInterestPair
+            "yearInterestPair": yearInterestPairPayload
         };
         axios.post(properties.host,payload)
             .then(res => {
-                console.log("results");
-                console.log(results);
                 setResults(res.data);
                 setResultsOpen(true);
             });
@@ -68,11 +64,11 @@ const Main = () => {
                         </span>
                     </div>
 
-                    <HistoricalDataAccordian
+                    <HistoricalDataAccordion
                         expanded={isUserData}
                         disabled={!isUserData}
-                        setYearValuePair={() => {setYearInterestPair()}}
-                        yearInterestPair={yearInterestPair}
+                        setYearValuePairPayload={(newPayload) => {setYearInterestPairPayload(newPayload)}}
+                        yearInterestPairData={yearInterestPairData}
                     />
 
 

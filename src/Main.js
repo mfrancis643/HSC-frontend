@@ -35,10 +35,6 @@ const Main = () => {
             });
     };
 
-    const showHistoricalData = () => {
-
-    }
-
     return (
         <>
             <HeadBanner/>
@@ -48,7 +44,6 @@ const Main = () => {
                         <h3>Mark Francis</h3>
                         <p>Hello, this is my attempt</p>
                     </div>
-
                     <div className="row">
                         <span className="label">
                             <TextField id="standard-basic"
@@ -58,7 +53,6 @@ const Main = () => {
                             />
                         </span>
                     </div>
-
                     <div className="row">
                         <span className="label">Use Historical Data:</span>
                         <span className="subComponent">
@@ -67,15 +61,12 @@ const Main = () => {
                             />
                         </span>
                     </div>
-
                     <HistoricalDataAccordion
                         expanded={isUserData}
                         disabled={!isUserData}
                         setYearValuePairPayload={(newPayload) => {setYearInterestPairPayload(newPayload)}}
                         yearInterestPairData={yearInterestPairData}
                     />
-
-
                     <Accordion
                         expanded={!isUserData}
                         disabled={isUserData}

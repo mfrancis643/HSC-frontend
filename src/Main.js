@@ -35,6 +35,10 @@ const Main = () => {
             });
     };
 
+    const showHistoricalData = () => {
+
+    }
+
     return (
         <>
             <HeadBanner/>
@@ -88,11 +92,12 @@ const Main = () => {
                     </Accordion>
 
                     {isLoading ? "Loading...": null}
-                    <Button onClick={() => sendButtonClick()}>LOAD</Button>
+                    <Button size={'large'} onClick={() => sendButtonClick()}>LOAD</Button>
                 </div>
                 {resultsOpen ? (
-                        <ResultsModal open={resultsOpen} closeCall={() => setResultsOpen(false)} content={results}/>
-                ):(<div></div>
+                    <ResultsModal open={resultsOpen} closeCall={() => setResultsOpen(false)} content={results}/>
+                    ):(
+                        <div></div>
                 )}
             </div>
         </>

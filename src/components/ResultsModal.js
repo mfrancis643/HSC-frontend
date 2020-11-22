@@ -1,8 +1,7 @@
-import {Modal, Card, CardContent, CardActions, Button, CardHeader, IconButton} from '@material-ui/core'
+import {IconButton} from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close';
-import {makeStyles} from "@material-ui/core/styles";
 import React from "react";
-import Iteration from "./Iteration";
+import Iteration from "./ResultsIteration";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -28,7 +27,7 @@ const ResultsModal = ({open, closeCall, content}) => {
                         <CloseIcon/>
                     </IconButton>
                 </DialogActions>
-                Your Result: {finalBankBalance}
+                Your Result: {parseFloat(finalBankBalance).toFixed(2)}
             </DialogTitle>
             <DialogContent>
                     Starting Bank Balance: {bankBankBalance}

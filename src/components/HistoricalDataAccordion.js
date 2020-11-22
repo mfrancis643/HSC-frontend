@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from "react";
-import {Accordion, AccordionDetails, AccordionSummary} from "@material-ui/core";
+import {Button, Accordion, AccordionDetails, AccordionSummary} from "@material-ui/core";
 import DropDown from "./DropDown";
 import countryList from "../resources/countryList";
+import HistoricalDataModal from "./HistoricalDataModal";
 
 const HistoricalDataAccordion = ({expanded, disabled, yearInterestPairData, setYearValuePairPayload}) => {
 
     const [country, setCountry] = useState("UK");
     const [startYear, setStartYear] = useState(Object.keys(yearInterestPairData)[0]);
     const [endYear, setEndYear] = useState(Object.keys(yearInterestPairData).pop());
+    const [historicalDataModalOpen, setHistoricalDataModalOpen] = useState(false);
 
     useEffect(() => {
         setYearValuePairPayload(getDataFromRange());
@@ -47,7 +49,15 @@ const HistoricalDataAccordion = ({expanded, disabled, yearInterestPairData, setY
                         value={endYear}
                         setValue={(newValue) => setEndYear(newValue)}
                     />
+                    <Button style={{marginTop: 20}} color={"secondary"} size={'small'} onClick={() => {setHistoricalDataModalOpen(true)}}>
+                        <span style={{fontSize: 16}}>Show This Historical Data</span>
+                    </Button>
                 </div>
+                {historicalDataModalOpen ? (
+                    <HistoricalDataModal open={historicalDataModalOpen} closeCall={() => {setHistoricalDataModalOpen(false)}} countryCode={country} yearInterestPairData={yearInterestPairData}/>
+                ):(
+                    <div></div>
+                )}
             </AccordionDetails>
         </Accordion>
     );

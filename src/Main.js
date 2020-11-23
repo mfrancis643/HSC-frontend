@@ -16,7 +16,7 @@ import HistoricalDataAccordion from "./components/HistoricalDataAccordion";
 
 const Main = () => {
     const [isLoading, setIsLoading] = useState(false);
-    const [isUserData, setIsUserData] = useState(true);
+    const [isCustomData, setIsCustomData] = useState(true);
     const [bankBalance, setBankBalance] = useState(1000);
     const [resultsOpen, setResultsOpen] = useState(false);
     const [results, setResults] = useState({});
@@ -40,9 +40,8 @@ const Main = () => {
             <HeadBanner/>
             <div className="spacerMargin">
                 <div className="main">
-                    <div>
-                        <h3>Mark Francis</h3>
-                        <p>Hello, this is my attempt</p>
+                    <div className={"spacedText"}>
+                        <p>At Historical Savings Calculator we utilise historical bank savings account interest rate data and apply them to a compound interest calculator. You can opt to use historical data or else define your own data set with the "Use Custom Data Option"!</p>
                     </div>
                     <div className="row">
                         <span className="label">
@@ -54,22 +53,22 @@ const Main = () => {
                         </span>
                     </div>
                     <div className="row">
-                        <span className="label">Use Historical Data:</span>
+                        <span className="label">Use Custom Data:</span>
                         <span className="subComponent">
-                            <Switch checked={isUserData}
-                                    onChange={() => setIsUserData(!isUserData)}
+                            <Switch checked={isCustomData}
+                                    onChange={() => setIsCustomData(!isCustomData)}
                             />
                         </span>
                     </div>
                     <HistoricalDataAccordion
-                        expanded={isUserData}
-                        disabled={!isUserData}
+                        expanded={isCustomData}
+                        disabled={!isCustomData}
                         setYearValuePairPayload={(newPayload) => {setYearInterestPairPayload(newPayload)}}
                         yearInterestPairData={yearInterestPairData}
                     />
                     <Accordion
-                        expanded={!isUserData}
-                        disabled={isUserData}
+                        expanded={!isCustomData}
+                        disabled={isCustomData}
                     >
                         <AccordionSummary
                             aria-controls="panel3a-content"

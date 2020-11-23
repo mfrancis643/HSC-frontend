@@ -24,14 +24,11 @@ const Main = () => {
     const [yearInterestPairPayload, setYearInterestPairPayload] = useState(yearInterestPairData);
 
     const sendButtonClick = () =>{
-        console.log(properties.host)
         let payload = {
             "bankBalance": bankBalance,
             "yearInterestPair": yearInterestPairPayload
         };
-        axios.get(properties.host + '/calculate', {
-            params: payload
-        })
+        axios.post(properties.host + '/calculate', payload)
             .then(res => {
                 setResults(res.data);
                 setResultsOpen(true);

@@ -8,7 +8,7 @@ import {
     TextField,
 } from "@material-ui/core";
 import {getYearInterestRatePair} from "./resources/yearInterestPair";
-import {properties} from "./resources/properties/properties.js";
+import {properties} from "./resources/properties/properties";
 import axios from "axios";
 import ResultsModal from "./components/ResultsModal"
 import HeadBanner from "./components/HeadBanner";
@@ -29,7 +29,9 @@ const Main = () => {
             "bankBalance": bankBalance,
             "yearInterestPair": yearInterestPairPayload
         };
-        axios.get(properties.host + '/calculate',payload)
+        axios.get(properties.host + '/calculate', {
+            params: payload
+        })
             .then(res => {
                 setResults(res.data);
                 setResultsOpen(true);

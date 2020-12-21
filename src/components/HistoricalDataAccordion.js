@@ -56,7 +56,7 @@ const HistoricalDataAccordion = ({expanded, disabled, yearInterestPairData, setY
                 {historicalDataModalOpen ? (
                     <HistoricalDataModal open={historicalDataModalOpen} closeCall={() => {setHistoricalDataModalOpen(false)}} countryCode={country} yearInterestPairData={yearInterestPairData}/>
                 ):(
-                    <div></div>
+                    <></>
                 )}
             </AccordionDetails>
         </Accordion>

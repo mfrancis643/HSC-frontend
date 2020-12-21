@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
     Accordion,
     AccordionDetails,
@@ -7,20 +7,23 @@ import {
     Switch,
     TextField,
 } from "@material-ui/core";
-import {getYearInterestRatePair} from "./resources/yearInterestPair";
+import {getYearInterestRatePairUK} from "./resources/data/yearInterestPairUK";
+import {getYearInterestRatePairUSA} from "./resources/data/yearInterestPairUSA";
 import {properties} from "./resources/properties/properties";
 import axios from "axios";
 import ResultsModal from "./components/ResultsModal"
 import HeadBanner from "./components/HeadBanner";
 import HistoricalDataAccordion from "./components/HistoricalDataAccordion";
+import CustomDataAccordion from "./components/CustomDataAccordian";
 
 const Main = () => {
     const [isLoading, setIsLoading] = useState(false);
-    const [isCustomData, setIsCustomData] = useState(true);
+    const [isCustomData, setIsCustomData] = useState(false);
+    const [country, setCountry] = useState("USA");
     const [bankBalance, setBankBalance] = useState(1000);
     const [resultsOpen, setResultsOpen] = useState(false);
     const [results, setResults] = useState({});
-    const [yearInterestPairData, setYearInterestPairData] = useState(getYearInterestRatePair);
+    const [yearInterestPairData, setYearInterestPairData] = useState(getYearInterestRatePairUSA);
     const [yearInterestPairPayload, setYearInterestPairPayload] = useState(yearInterestPairData);
 
     const sendButtonClick = () =>{
@@ -35,12 +38,16 @@ const Main = () => {
             });
     };
 
+    useEffect(() => {
+
+    })
+
     return (
         <>
             <HeadBanner/>
             <div className="spacerMargin">
                 <div className="main">
-                    <div className={"spacedText"}>
+                    <div className="spacedText">
                         <p>At Historical Savings Calculator we utilise historical bank savings account interest rate data and apply them to a compound interest calculator. You can opt to use historical data or else define your own data set with the "Use Custom Data Option"!</p>
                     </div>
                     <div className="row">
@@ -55,7 +62,7 @@ const Main = () => {
                     <div className="row">
                         <span className="label">Use Custom Data:</span>
                         <span className="subComponent">
-                            <Switch checked={isCustomData}
+                            <Switch checked={!isCustomData}
                                     onChange={() => setIsCustomData(!isCustomData)}
                             />
                         </span>
@@ -77,12 +84,12 @@ const Main = () => {
                             Custom Data
                         </AccordionSummary>
                         <AccordionDetails>
-                            <h1>Coming Soon!</h1>
+                            <CustomDataAccordion/>
                         </AccordionDetails>
                     </Accordion>
 
                     {isLoading ? "Loading...": null}
-                    <Button size={'large'} onClick={() => sendButtonClick()}>LOAD</Button>
+                    <Button variant="contained" size={'large'} onClick={() => sendButtonClick()}>Get Savings Results</Button>
                 </div>
                 {resultsOpen ? (
                     <ResultsModal open={resultsOpen} closeCall={() => setResultsOpen(false)} content={results}/>

@@ -1,4 +1,4 @@
-export const getYearInterestRatePair = {
+export const getYearInterestRatePairUK = {
     1980:	10.50,
     1981:	8.90,
     1982:	8.54,
@@ -38,5 +38,6 @@ export const getYearInterestRatePair = {
     2016:	1.23,
     2017:	1.00,
     2018:	1.18,
-    2019:	1.39
+    2019:	1.39,
+    2020:   0.01
 };

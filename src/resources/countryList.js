@@ -1,6 +1,6 @@
 const countryList = [
     "UK",
-    "US"
+    "USA"
 ];
 
 export default  countryList

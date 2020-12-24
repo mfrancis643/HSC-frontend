@@ -1,15 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {
-    Accordion,
-    AccordionDetails,
-    AccordionSummary,
     Button,
     Switch,
     TextField,
 } from "@material-ui/core";
-import {getYearInterestRatePairUK} from "./resources/data/yearInterestPairUK";
-import {getYearInterestRatePairUSA} from "./resources/data/yearInterestPairUSA";
-import {properties} from "./resources/properties/properties";
+import {properties} from "./resources/properties/properties-local";
 import axios from "axios";
 import ResultsModal from "./components/ResultsModal"
 import HeadBanner from "./components/HeadBanner";
@@ -18,18 +13,20 @@ import CustomDataAccordion from "./components/CustomDataAccordian";
 
 const Main = () => {
     const [isLoading, setIsLoading] = useState(false);
-    const [isCustomData, setIsCustomData] = useState(false);
-    const [country, setCountry] = useState("USA");
+    const [isCustomData, setIsCustomData] = useState(true);
     const [bankBalance, setBankBalance] = useState(1000);
     const [resultsOpen, setResultsOpen] = useState(false);
     const [results, setResults] = useState({});
-    const [yearInterestPairData, setYearInterestPairData] = useState(getYearInterestRatePairUSA);
-    const [yearInterestPairPayload, setYearInterestPairPayload] = useState(yearInterestPairData);
+    const [historicalYearInterestPairData, setHistoricalYearInterestPairData] = useState({})
+    const [customYearInterestPairData, setCustomYearInterestPairData] = useState({})
 
-    const sendButtonClick = () =>{
+    const sendButtonClick = () => {
+        let yearInterestPayload = {}
+
+        isCustomData === true? yearInterestPayload = customYearInterestPairData: yearInterestPayload = historicalYearInterestPairData;
         let payload = {
             "bankBalance": bankBalance,
-            "yearInterestPair": yearInterestPairPayload
+            "yearInterestPair": yearInterestPayload
         };
         axios.post(properties.host + '/calculate', payload)
             .then(res => {
@@ -37,10 +34,6 @@ const Main = () => {
                 setResultsOpen(true);
             });
     };
-
-    useEffect(() => {
-
-    })
 
     return (
         <>
@@ -53,48 +46,38 @@ const Main = () => {
                     <div className="row">
                         <span className="label">
                             <TextField id="standard-basic"
-                                       label="Bank Balance"
+                                       label="Initial Bank Balance"
                                        value={bankBalance}
                                        onChange={(e) => setBankBalance(e.target.value)}
                             />
                         </span>
                     </div>
                     <div className="row">
-                        <span className="label">Use Custom Data:</span>
+                        <span className="label" style={{padding:"10px"}}>Use Custom Data:</span>
                         <span className="subComponent">
-                            <Switch checked={!isCustomData}
+                            <Switch checked={isCustomData}
                                     onChange={() => setIsCustomData(!isCustomData)}
                             />
                         </span>
                     </div>
                     <HistoricalDataAccordion
-                        expanded={isCustomData}
-                        disabled={!isCustomData}
-                        setYearValuePairPayload={(newPayload) => {setYearInterestPairPayload(newPayload)}}
-                        yearInterestPairData={yearInterestPairData}
-                    />
-                    <Accordion
                         expanded={!isCustomData}
                         disabled={isCustomData}
-                    >
-                        <AccordionSummary
-                            aria-controls="panel3a-content"
-                            id="panel3a-header"
-                        >
-                            Custom Data
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <CustomDataAccordion/>
-                        </AccordionDetails>
-                    </Accordion>
+                        setYearValuePairPayload={(newPayload) => {setHistoricalYearInterestPairData(newPayload)}}
+                    />
+                    <CustomDataAccordion
+                        expanded={isCustomData}
+                        disabled={!isCustomData}
+                        setYearValuePairPayload={(newPayload) => {setCustomYearInterestPairData(newPayload)}}
+                    />
 
                     {isLoading ? "Loading...": null}
-                    <Button variant="contained" size={'large'} onClick={() => sendButtonClick()}>Get Savings Results</Button>
+                    <Button style={{margin: "20px", fontSize: "20px"}} variant="contained" size={'large'} onClick={() => sendButtonClick()}>Get Results</Button>
                 </div>
                 {resultsOpen ? (
                     <ResultsModal open={resultsOpen} closeCall={() => setResultsOpen(false)} content={results}/>
                     ):(
-                        <div></div>
+                        <></>
                 )}
             </div>
         </>

@@ -1,4 +1,4 @@
-export const getYearInterestRatePairUSA = {
+const yearInterestRatePairUSA = {
     2010:	0.2,
     2011:	0.15,
     2012:	0.10,
@@ -11,3 +11,5 @@ export const getYearInterestRatePairUSA = {
     2019:	0.09,
     2020:   0.05
 };
+
+export default yearInterestRatePairUSA

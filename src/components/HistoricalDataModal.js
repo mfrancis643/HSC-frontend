@@ -7,8 +7,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 
 const HistoricalDataModal = ({open, closeCall, countryCode, yearInterestPairData}) => {
-    console.log("yearInterestPair");
-    console.log(yearInterestPairData);
+
     return(
 
         <Dialog

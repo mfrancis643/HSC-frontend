@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {
     Button,
     Switch,
     TextField,
 } from "@material-ui/core";
-import {properties} from "./resources/properties/properties-local";
+import {properties} from "./resources/properties/properties";
 import axios from "axios";
 import ResultsModal from "./components/ResultsModal"
 import HeadBanner from "./components/HeadBanner";

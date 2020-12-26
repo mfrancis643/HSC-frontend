@@ -1,4 +1,4 @@
-import {IconButton} from '@material-ui/core'
+import {IconButton, Table, TableBody, TableRow} from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close';
 import React from "react";
 import Iteration from "./ResultsIteration";
@@ -21,16 +21,27 @@ const ResultsModal = ({open, closeCall, content}) => {
         >
             <DialogTitle id="max-width-dialog-title">
                 <DialogActions>
+                    <h2 style={{width:"100%"}}>Result: {parseFloat(finalBankBalance).toFixed(2)}</h2>
                     <IconButton
                         onClick={() => {closeCall()}}
                         aria-label="settings">
                         <CloseIcon/>
                     </IconButton>
                 </DialogActions>
-                Your Result: {parseFloat(finalBankBalance).toFixed(2)}
+
             </DialogTitle>
             <DialogContent>
-                    Starting Bank Balance: {bankBankBalance}
+                <p>Starting Bank Balance: {bankBankBalance}</p>
+
+                <Table>
+                    <TableBody>
+                        <TableRow>
+                            <th>Year</th>
+                            <th>Start Balance</th>
+                            <th>Interest Rate</th>
+                            <th>Annual Interest</th>
+                            <th>End Balance</th>
+                        </TableRow>
 
                     {
                         iterations.map((iteration, index) => {
@@ -45,7 +56,8 @@ const ResultsModal = ({open, closeCall, content}) => {
                                 />
                             )
                         })}
-
+                    </TableBody>
+                </Table>
             </DialogContent>
         </Dialog>
     );

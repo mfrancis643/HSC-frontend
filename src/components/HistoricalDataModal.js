@@ -1,4 +1,4 @@
-import {IconButton} from '@material-ui/core'
+import {AccordionDetails, IconButton, Table, TableBody, TableCell, TableRow} from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close';
 import React from "react";
 import Dialog from "@material-ui/core/Dialog";
@@ -18,6 +18,7 @@ const HistoricalDataModal = ({open, closeCall, countryCode, yearInterestPairData
         >
             <DialogTitle id="max-width-dialog-title">
                 <DialogActions>
+                    <h2 style={{width:"100%"}}>Historical Data: {countryCode}</h2>
                     <IconButton
                         onClick={() => {closeCall()}}
                         aria-label="settings">
@@ -27,22 +28,22 @@ const HistoricalDataModal = ({open, closeCall, countryCode, yearInterestPairData
 
             </DialogTitle>
             <DialogContent>
-                Historical Data: {countryCode}
-                <table>
-                    <tbody>
-                    <tr>
-                        <th>Year</th>
-                        <th>Interest Rate</th>
-                    </tr>
+
+                <Table>
+                    <TableBody>
+                        <TableRow>
+                            <th>Year</th>
+                            <th>Interest Rate</th>
+                        </TableRow>
                     {
                         Object.keys(yearInterestPairData).map((key) => {
-                            return(<tr key={key}><td><p>{key}</p></td><td><p key={key}>{yearInterestPairData[key]}</p></td></tr>)
+                            return(<TableRow key={key}><TableCell>{key}</TableCell><TableCell>{yearInterestPairData[key]}</TableCell></TableRow>)
                     })
                     }
                     <tr>
                     </tr>
-                    </tbody>
-                </table>
+                    </TableBody>
+                </Table>
             </DialogContent>
         </Dialog>
     );

@@ -1,3 +1,3 @@
 export const properties = {
-    "host": "http://34.243.248.222:8080"
+    "host": "http://18.202.250.108:8080"
 };

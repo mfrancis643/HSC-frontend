@@ -13,15 +13,26 @@ html{
   width: 100%;
 }
 
+h1{
+  font-size: calc(1.5vw + 1.5vh + 2vmin);
+}
 
 h3{
   color:#254E70;
   font-size: 18px;
 }
 
+p{
+  font-size: calc(0.25vw + 0.25vh + 2vmin);
+}
+
+.scaledText{
+  font-size: calc(0.25vw + 0.25vh + 2vmin);
+}
+
 .headBanner{
   background-color:#000;
-  height: 70px;
+  height: auto;
   width: 100%;
   overflow:auto;
 }
@@ -35,13 +46,14 @@ th{
   height: calc(100% - 16px);
   padding: 8px;
   color: white;
-  font-size: 35px;
+  font-size: calc(1.5vw + 1.5vh + 2vmin);
   font-weight: 400;
   vertical-align: middle;
 }
 
 .logoWriting{
   height: 100%;
+
 }
 
 .spacerMargin{

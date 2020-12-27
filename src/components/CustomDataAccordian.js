@@ -32,7 +32,7 @@ const CustomDataAccordion = ({expanded, disabled, setYearValuePairPayload}) => {
 
         setIsFirstRow(false);
         setNewYear(parseInt(newYear) + 1)
-        setNewInterestRate(1)
+        setNewInterestRate(interestRate)
 
     }
 
@@ -93,7 +93,7 @@ const CustomDataAccordion = ({expanded, disabled, setYearValuePairPayload}) => {
                         }
                         <TableRow>
                             <TableCell><TextField error={numTextBoxValidation(newYear)} helperText={numTextBoxValidation(newYear)? "Enter Valid Number": ""} type="number" disabled={!isFirstRow} label="Year" value={newYear} onChange={(e) => {setNewYear(e.target.value)}}/></TableCell>
-                            <TableCell><TextField error={numTextBoxValidation(newInterestRate)} helperText={numTextBoxValidation(newInterestRate)? "Enter Valid Number": ""} type="number" label="Interest Rate" variant="outlined" value={newInterestRate} onChange={(e) => {setNewInterestRate(e.target.value)}}/></TableCell>
+                            <TableCell><TextField error={numTextBoxValidation(newInterestRate)} helperText={numTextBoxValidation(newInterestRate)? "Enter Valid Number": ""} type="number" label="Interest Rate" variant="outlined" value={newInterestRate} onChange={(e) => {setNewInterestRate(parseFloat(e.target.value))}}/></TableCell>
                             <TableCell><Button disabled={numTextBoxValidation(newYear)||numTextBoxValidation(newInterestRate)} variant="contained" color="primary" onClick={() => {addRow(newInterestRate)}}>Add</Button></TableCell>
                         </TableRow>
                     </TableBody>

@@ -8,10 +8,12 @@ const DropDown = ({labelName, items, value, setValue}) => {
     };
 
     return(
-        <div className={"fullWidth"}>
+        <div className={"fullWidth scaledText"}>
             <span>{labelName}</span>
             <span style={labelStyle}>
                 <Select
+                    style={{fontSize: "calc(0.5vw + 0.5vh + 2vmin)"}}
+                    className={"scaledText"}
                     labelId="demo-simple-select-autowidth-label"
                     id="demo-simple-select-autowidth"
                     value={value}

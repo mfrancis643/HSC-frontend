@@ -23,11 +23,11 @@ h3{
 }
 
 p{
-  font-size: calc(0.25vw + 0.25vh + 2vmin);
+  font-size: calc(0.05vw + 0.05vh + 3);
 }
 
 .scaledText{
-  font-size: calc(0.25vw + 0.25vh + 2vmin);
+  font-size: calc(0.25vw + 0.25vh + 2);
 }
 
 .headBanner{

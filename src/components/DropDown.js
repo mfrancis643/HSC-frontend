@@ -12,7 +12,7 @@ const DropDown = ({labelName, items, value, setValue}) => {
             <span>{labelName}</span>
             <span style={labelStyle}>
                 <Select
-                    style={{fontSize: "calc(0.5vw + 0.5vh + 2vmin)"}}
+                    style={{fontSize: "0.25vw + 0.25vh + 2"}}
                     className={"scaledText"}
                     labelId="demo-simple-select-autowidth-label"
                     id="demo-simple-select-autowidth"

@@ -17,14 +17,12 @@ const ResultsModal = ({open, closeCall, content}) => {
             fullWidth={true}
             open={open}
             onClose={closeCall}
-            aria-labelledby="max-width-dialog-title"
         >
             <DialogTitle id="max-width-dialog-title">
                 <DialogActions>
                     <h2 style={{width:"100%"}}>Result: {parseFloat(finalBankBalance).toFixed(2)}</h2>
                     <IconButton
-                        onClick={() => {closeCall()}}
-                        aria-label="settings">
+                        onClick={() => {closeCall()}}>
                         <CloseIcon/>
                     </IconButton>
                 </DialogActions>

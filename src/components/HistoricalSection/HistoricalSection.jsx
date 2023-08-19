@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from "react";
-import {Button, Accordion, AccordionDetails, AccordionSummary} from "@mui/material";
-import DropDown from "./common/DropDown/DropDown";
-import countryList from "../resources/countryList";
-import HistoricalDataModal from "./HistoricalDataModal";
-import getDataSet from "../resources/data/dataSet";
+import {Button} from "@mui/material";
+import DropDown from "../common/DropDown/DropDown";
+import countryList from "../../resources/countryList";
+import HistoricalDataModal from "../HistoricalDataModal";
+import getDataSet from "../../resources/data/dataSet";
+import "./styles.css"
 
-const HistoricalDataAccordion = ({expanded, disabled, setYearValuePairPayload}) => {
+
+const HistoricalSection = ({setYearValuePairPayload}) =>{
 
     const getEarliestYear = (dataSet) => {
         return Object.keys(dataSet)[0]
@@ -44,13 +46,9 @@ const HistoricalDataAccordion = ({expanded, disabled, setYearValuePairPayload}) 
     };
 
     return(
-        <Accordion
-            expanded={expanded}
-            disabled={disabled}
-        >
-            <AccordionSummary> Historical Data </AccordionSummary>
-            <AccordionDetails >
-                <div>
+        <>
+            <div className="sectionContainer">
+                <div className="sectionPadding">
                     <DropDown
                         labelName="Country"
                         items={countryList}
@@ -73,13 +71,14 @@ const HistoricalDataAccordion = ({expanded, disabled, setYearValuePairPayload}) 
                         <span style={{fontSize: 16}}>Show This Historical Data</span>
                     </Button>
                 </div>
-                {historicalDataModalOpen ? (
-                    <HistoricalDataModal open={historicalDataModalOpen} closeCall={() => {setHistoricalDataModalOpen(false)}} countryCode={country} yearInterestPairData={historicalDataSet}/>
-                ):(
-                    <></>
-                )}
-            </AccordionDetails>
-        </Accordion>
+            </div>
+            {historicalDataModalOpen ? (
+                <HistoricalDataModal open={historicalDataModalOpen} closeCall={() => {setHistoricalDataModalOpen(false)}} countryCode={country} yearInterestPairData={historicalDataSet}/>
+            ):(
+                <></>
+            )}
+    </>
     );
-};
-export default  HistoricalDataAccordion;
+}
+
+export default HistoricalSection

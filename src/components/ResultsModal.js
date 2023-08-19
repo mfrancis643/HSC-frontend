@@ -1,11 +1,11 @@
-import {IconButton, Table, TableBody, TableRow} from '@material-ui/core'
-import CloseIcon from '@material-ui/icons/Close';
+import {IconButton, Table, TableBody, TableRow} from '@mui/material'
+import CloseIcon from '@mui/icons-material/Close';
 import React from "react";
 import Iteration from "./ResultsIteration";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogActions from "@material-ui/core/DialogActions";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
 
 const ResultsModal = ({open, closeCall, content}) => {
     let bankBankBalance = content.initialBankBalance;

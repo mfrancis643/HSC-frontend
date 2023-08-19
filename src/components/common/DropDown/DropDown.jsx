@@ -1,4 +1,4 @@
-import {MenuItem, Select} from "@material-ui/core";
+import {MenuItem, Select} from "@mui/material";
 import React from "react";
 
 const DropDown = ({labelName, items, value, setValue}) => {

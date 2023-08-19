@@ -9,7 +9,7 @@ html, body{
 }
 html{
   height: 100%;
-  background-color: #ffffff;
+  background-color: #F9F9F1;
   width: 100%;
 }
 
@@ -31,7 +31,7 @@ p{
 }
 
 .headBanner{
-  background-color:#000;
+  background-color:#85BB65;
   height: auto;
   width: 100%;
   overflow:auto;
@@ -60,7 +60,6 @@ th{
   height: 100%;
   margin-left: 10%;
   margin-right: 10%;
-  background-color: #fff;
 }
 
 .getResult{

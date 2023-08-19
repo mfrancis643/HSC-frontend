@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/icons": "^4.9.1",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "5.14.0",
+    "@mui/material": "5.14.0",
     "axios": "^0.19.2",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
     "react-scripts": "2.1.8"
   },
   "scripts": {
@@ -30,5 +30,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

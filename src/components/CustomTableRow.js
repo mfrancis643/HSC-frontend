@@ -1,6 +1,6 @@
 import React from "react";
-import {TableCell, TableRow} from "@material-ui/core";
-import{Button} from "@material-ui/core";
+import {TableCell, TableRow} from "@mui/material";
+import{Button} from "@mui/material";
 
 const CustomTableRow = ({year, interestRate, deleteRow, addFunction, showCopy}) => {
 

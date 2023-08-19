@@ -1,5 +1,5 @@
 import React from "react";
-import {TableCell, TableRow} from "@material-ui/core";
+import {TableCell, TableRow} from "@mui/material";
 
 const Iteration = ({year, initialBalance, interestRate, annualInterest, newBankBalance}) => {
 

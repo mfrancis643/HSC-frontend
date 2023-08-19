@@ -1,8 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {
-    Accordion,
-    AccordionDetails,
-    AccordionSummary,
     Button,
     Table,
     TableBody,
@@ -10,9 +7,11 @@ import {
     TableRow,
     TextField
 } from "@mui/material";
-import CustomTableRow from "./CustomTableRow";
+import CustomTableRow from "../CustomTableRow";
+import "./styles.css"
 
-const CustomDataAccordion = ({expanded, disabled, setYearValuePairPayload}) => {
+
+const CustomSection = ({ setYearValuePairPayload}) => {
 
     const [customData, setCustomData] = useState({})
     const [newYear, setNewYear] = useState("1");
@@ -66,12 +65,8 @@ const CustomDataAccordion = ({expanded, disabled, setYearValuePairPayload}) => {
     }, [years])
 
     return(
-        <Accordion
-            expanded={expanded}
-            disabled={disabled}
-        >
-            <AccordionSummary>Custom Data</AccordionSummary>
-            <AccordionDetails>
+        <div className="sectionContainer">
+            <div className="sectionPadding">
                 <Table>
                     <TableBody>
                         <TableRow>
@@ -98,8 +93,10 @@ const CustomDataAccordion = ({expanded, disabled, setYearValuePairPayload}) => {
                         </TableRow>
                     </TableBody>
                 </Table>
-            </AccordionDetails>
-        </Accordion>
+            </div>
+
+        </div>
+
     );
 };
-export default  CustomDataAccordion;
+export default  CustomSection;

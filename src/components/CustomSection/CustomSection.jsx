@@ -11,16 +11,17 @@ import CustomTableRow from "../CustomTableRow";
 import "./styles.css"
 
 
-const CustomSection = ({ setYearValuePairPayload}) => {
+const CustomSection = ({ sendRequest }) => {
 
     const [customData, setCustomData] = useState({})
     const [newYear, setNewYear] = useState("1");
     const [newInterestRate, setNewInterestRate] = useState("0")
     const [isFirstRow, setIsFirstRow] = useState(true)
     const [years, setYears] = useState(Object.keys(customData))
+    const [yearValuePairPayload, setYearValuePairPayload ] = useState({})
 
     const numTextBoxValidation = (parVal) => {
-        return parVal == "" || parVal < 0
+        return parVal === "" || parVal < 0
     }
 
     const addRow = (interestRate) => {
@@ -53,7 +54,6 @@ const CustomSection = ({ setYearValuePairPayload}) => {
         setCustomData(revisedCustomData);
         setNewYear(getLatestYear())
     }
-
 
     useEffect(() => {
         setYears(Object.keys(customData))
@@ -93,7 +93,10 @@ const CustomSection = ({ setYearValuePairPayload}) => {
                         </TableRow>
                     </TableBody>
                 </Table>
+                <Button variant="contained" size={'large'} onClick={() => sendRequest(yearValuePairPayload)}>Get Results</Button>
+
             </div>
+
 
         </div>
 

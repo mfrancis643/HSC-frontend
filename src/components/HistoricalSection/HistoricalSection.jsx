@@ -7,7 +7,7 @@ import getDataSet from "../../resources/data/dataSet";
 import "./styles.css"
 
 
-const HistoricalSection = ({setYearValuePairPayload}) =>{
+const HistoricalSection = ({sendRequest}) =>{
 
     const getEarliestYear = (dataSet) => {
         return Object.keys(dataSet)[0]
@@ -22,6 +22,7 @@ const HistoricalSection = ({setYearValuePairPayload}) =>{
     const [startYear, setStartYear] = useState(getEarliestYear(historicalDataSet));
     const [endYear, setEndYear] = useState(getLatestYear(historicalDataSet));
     const [historicalDataModalOpen, setHistoricalDataModalOpen] = useState(false);
+    const [yearValuePairPayload, setYearValuePairPayload ] = useState({})
 
     useEffect(() => {
         setStartYear(getEarliestYear(historicalDataSet))
@@ -67,9 +68,12 @@ const HistoricalSection = ({setYearValuePairPayload}) =>{
                         value={endYear}
                         setValue={(newValue) => setEndYear(newValue)}
                     />
-                    <Button style={{marginTop: 20}} color={"secondary"} size={'small'} onClick={() => {setHistoricalDataModalOpen(true)}}>
-                        <span style={{fontSize: 16}}>Show This Historical Data</span>
-                    </Button>
+                    <div>
+                        <Button style={{marginTop: 20}} color={"secondary"} size={'small'} onClick={() => {setHistoricalDataModalOpen(true)}}>
+                            <span style={{fontSize: 16}}>Show This Historical Data</span>
+                        </Button>
+                    </div>
+                    <Button variant="contained" size={'large'} onClick={() => sendRequest(yearValuePairPayload)}>Get Results</Button>
                 </div>
             </div>
             {historicalDataModalOpen ? (

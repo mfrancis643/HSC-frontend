@@ -12,8 +12,8 @@ import {
 } from "@mui/material";
 import CustomTableRow from "./CustomTableRow";
 
-const CustomDataAccordion = ({expanded, disabled, setYearValuePairPayload}) => {
-
+const CustomDataAccordion = ({setYearValuePairPayload}) => {
+    const [yearValuePairPayload, setYearValuePairPayload ] = useState({})
     const [customData, setCustomData] = useState({})
     const [newYear, setNewYear] = useState("1");
     const [newInterestRate, setNewInterestRate] = useState("0")
@@ -21,7 +21,7 @@ const CustomDataAccordion = ({expanded, disabled, setYearValuePairPayload}) => {
     const [years, setYears] = useState(Object.keys(customData))
 
     const numTextBoxValidation = (parVal) => {
-        return parVal == "" || parVal < 0
+        return parVal === "" || parVal < 0
     }
 
     const addRow = (interestRate) => {

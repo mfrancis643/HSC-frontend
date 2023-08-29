@@ -1,3 +1,14 @@
+/*
+
+COLOR SCHEME
+
+dollar green: #85BB65
+dollar white: #F9F9F1
+sea green: #228d57
+black olive: #3e3e3c
+
+*/
+
 body{
   font-family: Arial;
   height: 100%;
@@ -6,6 +17,7 @@ body{
 html, body{
   padding: 0;
   margin: 0;
+  color: #3e3e3c;
 }
 html{
   height: 100%;
@@ -35,6 +47,8 @@ p{
   height: auto;
   width: 100%;
   overflow:auto;
+  color: #3e3e3c;
+
 }
 
 th{
@@ -68,7 +82,7 @@ th{
 
 .iteration{
   margin: 15px;
-  border: solid black 2px;
+  border: solid #3e3e3c 2px;
   padding: 10px
 }
 
@@ -83,7 +97,6 @@ th{
   flex-direction: column;
   padding: 15px;
   height: 100%;
-  color: #000000;
   font-size: 18px;
 }
 

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
     Button,
     Switch,
@@ -9,8 +9,6 @@ import {properties} from "./resources/properties/properties-local";
 import axios from "axios";
 import ResultsModal from "./components/ResultsModal"
 import HeadBanner from "./components/HeadBanner";
-import HistoricalDataAccordion from "./components/HistoricalDataAccordion";
-import CustomDataAccordion from "./components/CustomDataAccordian";
 import OrSymbol from "./components/OrSymbol/OrSymbol";
 import HistoricalSection from "./components/HistoricalSection/HistoricalSection";
 import CustomSection from "./components/CustomSection/CustomSection";
@@ -18,26 +16,28 @@ import Description from "./components/Description/Description";
 
 const Main = () => {
     const [isLoading, setIsLoading] = useState(false);
-    const [isCustomData, setIsCustomData] = useState(true);
     const [bankBalance, setBankBalance] = useState(1000);
     const [resultsOpen, setResultsOpen] = useState(false);
     const [results, setResults] = useState({});
     const [historicalYearInterestPairData, setHistoricalYearInterestPairData] = useState({})
     const [customYearInterestPairData, setCustomYearInterestPairData] = useState({})
 
-    const sendButtonClick = () => {
-        let yearInterestPayload = {}
+    useEffect(() => {
+        console.log(results)
+    }, [results])
 
-        isCustomData === true? yearInterestPayload = customYearInterestPairData: yearInterestPayload = historicalYearInterestPairData;
+    const sendButtonClick = (yearInterestPayload) => {
+
         let payload = {
             "bankBalance": bankBalance,
             "yearInterestPair": yearInterestPayload
         };
-        axios.post(properties.host + '/calculate', payload)
+
+        yearInterestPayload !== {} && axios.post(properties.host + '/calculate', payload)
             .then(res => {
                 setResults(res.data);
                 setResultsOpen(true);
-            });
+            })
     };
 
     return (
@@ -50,9 +50,7 @@ const Main = () => {
                     <Grid container>
                         <Grid item xs={5.5}>
                             <HistoricalSection
-                                expanded={!isCustomData}
-                                disabled={isCustomData}
-                                setYearValuePairPayload={(newPayload) => {setHistoricalYearInterestPairData(newPayload)}}
+                                sendRequest={(newPayload) => {sendButtonClick(newPayload)}}
                             />
                         </Grid>
                         <Grid item xs={1}>
@@ -60,9 +58,7 @@ const Main = () => {
                         </Grid>
                         <Grid item xs={5.5}>
                             <CustomSection
-                                expanded={isCustomData}
-                                disabled={!isCustomData}
-                                setYearValuePairPayload={(newPayload) => {setCustomYearInterestPairData(newPayload)}}
+                                sendRequest={(newPayload) => {sendButtonClick(newPayload)}}
                             />
                         </Grid>
 

@@ -3,9 +3,9 @@ import {
     Button,
     Switch,
     TextField,
-    Grid
+    Grid, ThemeProvider
 } from "@mui/material";
-import {properties} from "./resources/properties/properties-local";
+import {properties} from "./resources/properties/properties";
 import axios from "axios";
 import ResultsModal from "./components/ResultsModal"
 import HeadBanner from "./components/HeadBanner";
@@ -13,6 +13,8 @@ import OrSymbol from "./components/OrSymbol/OrSymbol";
 import HistoricalSection from "./components/HistoricalSection/HistoricalSection";
 import CustomSection from "./components/CustomSection/CustomSection";
 import Description from "./components/Description/Description";
+import {themeOptions} from "./resources/themeOptions";
+import {calculate} from './common/calculate'
 
 const Main = () => {
     const [bankBalance, setBankBalance] = useState(1000);
@@ -26,15 +28,15 @@ const Main = () => {
             "yearInterestPair": yearInterestPayload
         };
 
-        yearInterestPayload !== {} && axios.post(properties.host + '/calculate', payload)
-            .then(res => {
-                setResults(res.data);
-                setResultsOpen(true);
-            })
+        if (yearInterestPayload !== {}) {
+            let res = calculate(payload);
+            setResultsOpen(true);
+            setResults(res)
+        }
     };
 
     return (
-        <>
+        <ThemeProvider theme={themeOptions}>
             <HeadBanner/>
             <div className="spacerMargin">
                 <div className="main">
@@ -50,15 +52,15 @@ const Main = () => {
                         </div>
 
                     <Grid container>
-                        <Grid item xs={5.5}>
+                        <Grid item md={5.5} xs = {12}>
                             <HistoricalSection
                                 sendRequest={(newPayload) => {sendButtonClick(newPayload)}}
                             />
                         </Grid>
-                        <Grid item xs={1}>
+                        <Grid style={{padding: "15px", paddingTop: '40px'}}     item md={1} xs = {12}>
                             <OrSymbol/>
                         </Grid>
-                        <Grid item xs={5.5}>
+                        <Grid item md={5.5} xs = {12}>
                             <CustomSection
                                 sendRequest={(newPayload) => {sendButtonClick(newPayload)}}
                             />
@@ -72,7 +74,7 @@ const Main = () => {
                         <></>
                 )}
             </div>
-        </>
+        </ThemeProvider>
     );
 };
 

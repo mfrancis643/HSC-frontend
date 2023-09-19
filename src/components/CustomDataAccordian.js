@@ -10,7 +10,7 @@ import {
     TableRow,
     TextField
 } from "@mui/material";
-import CustomTableRow from "./CustomTableRow";
+import CustomTableRow from "./CustomSection/CustomTableRow";
 
 const CustomDataAccordion = ({setYearValuePairPayload}) => {
     const [yearValuePairPayload, setYearValuePairPayload ] = useState({})

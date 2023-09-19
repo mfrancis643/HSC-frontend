@@ -1,0 +1,13 @@
+.fullWidth{
+    width: 100%;
+    font-size: medium;
+}
+
+.scaledFont{
+    /*font-size:  calc(0.25vw + 0.25vh + 2);*/
+    font-size:  2px;
+}
+
+.spacer{
+    margin-left: 50px;
+}

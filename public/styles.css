@@ -74,6 +74,7 @@ th{
   height: 100%;
   margin-left: 10%;
   margin-right: 10%;
+  padding-bottom: 50px;
 }
 
 .getResult{
@@ -98,6 +99,7 @@ th{
   padding: 15px;
   height: 100%;
   font-size: 18px;
+  margin-bottom: 50px;
 }
 
 .row{
@@ -159,7 +161,10 @@ th{
 
 @media(max-width: 750px) {
   .spacerMargin {
+    height: 100%;
     margin-left: 3%;
     margin-right: 3%;
+    padding-bottom: 50px;
+
   }
 }

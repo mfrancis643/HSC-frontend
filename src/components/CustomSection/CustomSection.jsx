@@ -7,7 +7,8 @@ import {
     TableRow,
     TextField
 } from "@mui/material";
-import CustomTableRow from "../CustomTableRow";
+import CustomTableRow from "./CustomTableRow";
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import "./styles.css"
 
 
@@ -67,7 +68,7 @@ const CustomSection = ({ sendRequest }) => {
     return(
         <div className="sectionContainer">
             <div className="sectionPadding">
-                <Table>
+                <Table >
                     <TableBody>
                         <TableRow>
                             <th>Year</th>
@@ -87,9 +88,15 @@ const CustomSection = ({ sendRequest }) => {
                             })
                         }
                         <TableRow>
-                            <TableCell><TextField error={numTextBoxValidation(newYear)} helperText={numTextBoxValidation(newYear)? "Enter Valid Number": ""} type="number" disabled={!isFirstRow} label="Year" value={newYear} onChange={(e) => {setNewYear(e.target.value)}}/></TableCell>
-                            <TableCell><TextField error={numTextBoxValidation(newInterestRate)} helperText={numTextBoxValidation(newInterestRate)? "Enter Valid Number": ""} type="number" label="Interest Rate" variant="outlined" value={newInterestRate} onChange={(e) => {setNewInterestRate(parseFloat(e.target.value))}}/></TableCell>
-                            <TableCell><Button disabled={numTextBoxValidation(newYear)||numTextBoxValidation(newInterestRate)} variant="contained" color="primary" onClick={() => {addRow(newInterestRate)}}>Add</Button></TableCell>
+                            <TableCell>
+                                <TextField error={numTextBoxValidation(newYear)} helperText={numTextBoxValidation(newYear)? "Enter Valid Number": ""} type="number" disabled={!isFirstRow} label="Year" value={newYear} onChange={(e) => {setNewYear(e.target.value)}}/>
+                            </TableCell>
+                            <TableCell>
+                                <TextField error={numTextBoxValidation(newInterestRate)} helperText={numTextBoxValidation(newInterestRate)? "Enter Valid Number": ""} type="number" label="Interest Rate" variant="outlined" value={newInterestRate} onChange={(e) => {setNewInterestRate(parseFloat(e.target.value))}}/>
+                            </TableCell>
+                            <TableCell>
+                                <Button disabled={numTextBoxValidation(newYear)||numTextBoxValidation(newInterestRate)} variant="contained" color="primary" onClick={() => {addRow(newInterestRate)}}><AddCircleOutlineIcon/></Button>
+                            </TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>

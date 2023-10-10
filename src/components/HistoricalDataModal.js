@@ -5,13 +5,22 @@ import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
+import Graph from "./Graph/Graph";
 
 const HistoricalDataModal = ({open, closeCall, countryCode, yearInterestPairData}) => {
+    console.log('yearInterestPairData')
+    console.log(yearInterestPairData)
+
+    let labels = Object.keys(yearInterestPairData)
+    let dataset = labels.map((label) => {
+        return yearInterestPairData[label]
+    })
 
     return(
 
         <Dialog
             fullWidth={true}
+            maxWidth={"lg"}
             open={open}
             onClose={closeCall}
 
@@ -28,7 +37,7 @@ const HistoricalDataModal = ({open, closeCall, countryCode, yearInterestPairData
 
             </DialogTitle>
             <DialogContent>
-
+                <Graph labels={labels} dataset={dataset} header='Interest Rate'/>
                 <Table>
                     <TableBody>
                         <TableRow>

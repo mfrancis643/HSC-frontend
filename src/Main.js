@@ -1,12 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {
-    Button,
-    Switch,
     TextField,
     Grid, ThemeProvider
 } from "@mui/material";
-import {properties} from "./resources/properties/properties";
-import axios from "axios";
 import ResultsModal from "./components/ResultsModal"
 import HeadBanner from "./components/HeadBanner";
 import OrSymbol from "./components/OrSymbol/OrSymbol";

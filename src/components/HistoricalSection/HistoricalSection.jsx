@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Button} from "@mui/material";
+import {Button, FormControlLabel} from "@mui/material";
 import DropDown from "../common/DropDown/DropDown";
 import countryList from "../../resources/countryList";
 import HistoricalDataModal from "../HistoricalDataModal";
@@ -17,7 +17,7 @@ const HistoricalSection = ({sendRequest}) =>{
         return Object.keys(dataSet)[Object.keys(dataSet).length-1]
     }
 
-    const [country, setCountry] = useState("UK");
+    const [country, setCountry] = useState("USA");
     const [historicalDataSet, setHistoricalDataSet] = useState(getDataSet(country))
     const [startYear, setStartYear] = useState(getEarliestYear(historicalDataSet));
     const [endYear, setEndYear] = useState(getLatestYear(historicalDataSet));
@@ -50,12 +50,10 @@ const HistoricalSection = ({sendRequest}) =>{
         <>
             <div className="sectionContainer">
                 <div className="sectionPadding">
-                    <DropDown
-                        labelName="Country"
-                        items={countryList}
-                        value={country}
-                        setValue={(newValue) => setCountry(newValue)}
-                    />
+                    <h3>Historical Data</h3>
+                    <FormControlLabel style={{paddingLeft:'20px'}} label={"Country:"} control={<></>}/>
+                    <Button onClick={() => setCountry('USA')} variant={country === 'USA' ? 'contained' : 'outlined'}>USA</Button>
+                    <Button onClick={() => setCountry('UK')} variant={country === 'UK' ? 'contained' : 'outlined'}>UK</Button>
                     <DropDown
                         labelName="Start Year"
                         items={Object.keys(historicalDataSet)}

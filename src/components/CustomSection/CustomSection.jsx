@@ -68,6 +68,7 @@ const CustomSection = ({ sendRequest }) => {
     return(
         <div className="sectionContainer">
             <div className="sectionPadding">
+                <h3>Custom Data</h3>
                 <Table >
                     <TableBody>
                         <TableRow>

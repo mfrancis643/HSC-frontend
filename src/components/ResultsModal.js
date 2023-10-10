@@ -6,15 +6,28 @@ import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
+import Graph from "./Graph/Graph";
 
 const ResultsModal = ({open, closeCall, content}) => {
     let bankBankBalance = content.initialBankBalance;
     let finalBankBalance = content.finalBankBalance;
     let iterations = content.iterations;
+
+    let labels = iterations.map((iter) => {
+        return iter.year
+    })
+
+    let dataSet = iterations.map((iter) => {
+        return iter.newBankBalance
+    })
+
+    console.log('iterations')
+    console.log(iterations)
     return(
 
         <Dialog
             fullWidth={true}
+            maxWidth={"lg"}
             open={open}
             onClose={closeCall}
         >
@@ -29,6 +42,7 @@ const ResultsModal = ({open, closeCall, content}) => {
 
             </DialogTitle>
             <DialogContent>
+                <Graph labels={labels} dataset={dataSet}/>
                 <p>Starting Bank Balance: {bankBankBalance}</p>
 
                 <Table>

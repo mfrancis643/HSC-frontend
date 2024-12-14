@@ -1,38 +1,42 @@
 import React from "react";
-import {Button, Step, StepLabel, Stepper} from "@mui/material";
+// import {Button, Step, StepLabel, Stepper} from "@mui/material";
 import { FaCircleDollarToSlot } from "react-icons/fa6";
 import { HiMiniCog6Tooth } from "react-icons/hi2";
 import { ImStatsDots } from "react-icons/im";
 import { styled } from '@mui/system';
+import {Button, StepLabel, Stepper} from "@mui/material";
+import Step from '@mui/material/Step';
 import Grid2 from "@mui/material/Unstable_Grid2";
 
-const CircularBackground = styled('div')(({ bgColor }) => ({
-    backgroundColor: bgColor,
-    borderRadius: '50%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 40,
-    height: 40
-}));
-
-const CustomStepIcon = ({ active, completed, icon }) => {
-    const bgColor = active || completed ? '#3f51b5' : '#e0e0e0';
-
-    const icons = [
-        <FaCircleDollarToSlot style={{ color: '#fff' }} />,
-        <HiMiniCog6Tooth style={{ color: '#fff' }} />,
-        <ImStatsDots style={{ color: '#fff' }} />
-    ];
-
-    return (
-        <CircularBackground bgColor={bgColor}>
-            {icons[icon - 1]}
-        </CircularBackground>
-    );
-};
-
 const CustomStepper = ({ steps, setCurrentStep, currentStep, children }) => {
+
+    const CircularBackground = styled('div')(({ bgColor }) => ({
+        backgroundColor: bgColor,
+        borderRadius: '50%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 40,
+        height: 40
+    }));
+    //
+    const CustomStepIcon = ({ active, completed, icon }) => {
+        const bgColor = active || completed ? '#3f51b5' : '#e0e0e0';
+
+        const icons = [
+            <FaCircleDollarToSlot style={{ color: '#fff' }} />,
+            <HiMiniCog6Tooth style={{ color: '#fff' }} />,
+            <ImStatsDots style={{ color: '#fff' }} />
+        ];
+
+        return (
+            <CircularBackground bgColor={bgColor}>
+                {icons[icon - 1]}
+            </CircularBackground>
+        );
+    };
+
+
 
     return (
         <>
